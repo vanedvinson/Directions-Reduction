@@ -26,16 +26,16 @@ namespace Directions_Reduction
                 List<string> one = arr.ToList();
                 List<string> two = new List<string>();
 
-                int bla = one.Where(x => x.Equals("NORTH")).Count() - one.Where(x => x.Equals("SOUTH")).Count();
-                int bla2 = one.Where(x => x.Equals("WEST")).Count() - one.Where(x => x.Equals("EAST")).Count();
+                for (int i = 0; i < one.Count(); i++)
+                {
+                    if (one[i] == "NORTH" && one[i + 1] == "SOUTH")
+                    {
+                        one.Remove(one[i + 1]);
+                        one.Remove(one[i]);
+                    }
+                }
 
-                if (bla > 0) for (int i = 0; i < bla; i++) two.Add("NORTH");
-                else if (bla < 0) for (int i = 0; i < Math.Abs(bla); i++) two.Add("SOUTH");
-
-                if (bla2 > 0) for (int i = 0; i < bla2; i++) two.Add("WEST");
-                else if (bla2 < 0) for (int i = 0; i < Math.Abs(bla2); i++) two.Add("EAST");
-
-
+                for (int i = 0; i < one.Count(); i++) Console.WriteLine(one[i]);
 
                 return two.ToArray();
             }
