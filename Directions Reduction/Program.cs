@@ -8,7 +8,7 @@ namespace Directions_Reduction
     {
         static void Main(string[] args)
         {
-            string[] a = new string[] { "NORTH", "WEST", "SOUTH", "EAST" };
+            string[] a = new string[] { "NORTH", "SOUTH", "WEST", "EAST", "SOUTH", "EAST" };
             string[] b = new string[] { "NORTH", "WEST", "SOUTH", "EAST", "SOUTH" };
             string[] c = new string[] { "NORTH", "WEST", "SOUTH", "EAST", "NORTH" };
             string[] d = new string[] { "NORTH", "WEST", "SOUTH", "EAST", "WEST", "WEST" };
@@ -24,20 +24,65 @@ namespace Directions_Reduction
             string[] dirReduc(String[] arr)
             {
                 List<string> one = arr.ToList();
-                List<string> two = new List<string>();
+                List<string> two = arr.ToList();
 
                 for (int i = 0; i < one.Count(); i++)
                 {
-                    if (one[i] == "NORTH" && one[i + 1] == "SOUTH")
+                    switch (one[i])
                     {
-                        one.Remove(one[i + 1]);
-                        one.Remove(one[i]);
+                        case "NORTH":
+                            try
+                            {
+                                if (one[i + 1] == "SOUTH")
+                                {
+                                    two[i + 1] = "mu";
+                                    two[i] = "mu";
+                                }
+                            }
+                            catch{}
+                            break;
+                        case "SOUTH":
+                            try
+                            {
+                                if (one[i + 1] == "NORTH")
+                                {
+                                    two[i + 1] = "mu";
+                                    two[i] = "mu";
+                                }
+                            }
+                            catch{}
+                            break;
+                        case "WEST":
+                            try
+                            {
+                                if (one[i + 1] == "EAST")
+                                {
+                                    two[i + 1] = "mu";
+                                    two[i] = "mu";
+                                }
+                            }
+                            catch{}
+                            break;
+                        case "EAST":
+                            try
+                            {
+                                if (one[i + 1] == "WEST")
+                                {
+                                    two[i + 1] = "mu";
+                                    two[i] = "mu";
+                                }
+                            }
+                            catch{}
+                            break;
                     }
                 }
-
-                for (int i = 0; i < one.Count(); i++) Console.WriteLine(one[i]);
-
-                return two.ToArray();
+               
+                
+                two.RemoveAll(x => x == "mu");
+                if (one.Count() == two.Count()) return two.ToArray();
+                else one = two;
+                
+                return dirReduc(two.ToArray());
             }
         }
     }
