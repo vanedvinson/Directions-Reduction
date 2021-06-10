@@ -35,8 +35,8 @@ namespace Directions_Reduction
                             {
                                 if (one[i + 1] == "SOUTH")
                                 {
-                                    two[i + 1] = "mu";
-                                    two[i] = "mu";
+                                    two[i + 1] = "";
+                                    two[i] = "";
                                 }
                             }
                             catch{}
@@ -46,8 +46,8 @@ namespace Directions_Reduction
                             {
                                 if (one[i + 1] == "NORTH")
                                 {
-                                    two[i + 1] = "mu";
-                                    two[i] = "mu";
+                                    two[i + 1] = "";
+                                    two[i] = "";
                                 }
                             }
                             catch{}
@@ -57,8 +57,8 @@ namespace Directions_Reduction
                             {
                                 if (one[i + 1] == "EAST")
                                 {
-                                    two[i + 1] = "mu";
-                                    two[i] = "mu";
+                                    two[i + 1] = "";
+                                    two[i] = "";
                                 }
                             }
                             catch{}
@@ -68,8 +68,8 @@ namespace Directions_Reduction
                             {
                                 if (one[i + 1] == "WEST")
                                 {
-                                    two[i + 1] = "mu";
-                                    two[i] = "mu";
+                                    two[i + 1] = "";
+                                    two[i] = "";
                                 }
                             }
                             catch{}
@@ -78,7 +78,7 @@ namespace Directions_Reduction
                 }
                
                 
-                two.RemoveAll(x => x == "mu");
+                two.RemoveAll(x => x == "");
                 if (one.Count() == two.Count()) return two.ToArray();
                 else one = two;
                 
